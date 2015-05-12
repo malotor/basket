@@ -20,4 +20,9 @@ class Basket
     {
     	return $this->items[$itemId];
     }
+
+    public function removeItem($itemId)
+    {
+        unset($this->items[$itemId]);
+    }
 }
