@@ -9,4 +9,9 @@ class Basket
     {
         return 0;
     }
+
+    public function addItem($argument1)
+    {
+        // TODO: write logic here
+    }
 }
