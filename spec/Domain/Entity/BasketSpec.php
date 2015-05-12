@@ -31,4 +31,13 @@ class BasketSpec extends ObjectBehavior
 		$this->addItem($item);
 		$this->getItem($itemId)->shouldReturn($item);
 	}
+
+	function it_should_remove_an_item(Item $item) {
+		$itemId = rand();
+		$item->getId()->willReturn($itemId);
+		$this->addItem($item);
+		$this->countItems()->shouldReturn(1);
+		$this->removeItem($itemId);
+		$this->countItems()->shouldReturn(0);
+	}
 }
