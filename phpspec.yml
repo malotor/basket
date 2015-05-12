@@ -1,0 +1,4 @@
+suites:
+    shoppingcart_suite:
+        namespace: malotor\shoppingcart
+        psr4_prefix: malotor\shoppingcart
