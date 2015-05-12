@@ -11,4 +11,9 @@ class BasketSpec extends ObjectBehavior
     {
         $this->shouldHaveType('malotor\shoppingcart\Domain\Entity\Basket');
     }
+
+    function it_new_basket_should_have_0_items()
+    {
+    	$this->countItems()->shouldReturn(0);
+    }
 }
