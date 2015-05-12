@@ -25,8 +25,8 @@ class BasketSpec extends ObjectBehavior
 		$this->countItems()->shouldReturn(1);
 	}
 
-	function it_shoul_retrieve_an_item(Item $item) {
-		$itemId = "1";
+	function it_should_retrieve_an_item(Item $item) {
+		$itemId = rand();
 		$item->getId()->willReturn($itemId);
 		$this->addItem($item);
 		$this->getItem($itemId)->shouldReturn($item);
