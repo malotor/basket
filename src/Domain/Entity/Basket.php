@@ -4,14 +4,15 @@ namespace malotor\shoppingcart\Domain\Entity;
 
 class Basket
 {
+	private $numberOfItems = 0;
 
     public function countItems()
     {
-        return 0;
+        return $this->numberOfItems;
     }
 
     public function addItem($argument1)
     {
-        // TODO: write logic here
+        $this->numberOfItems++;
     }
 }
