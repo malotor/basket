@@ -10,6 +10,14 @@ use malotor\shoppingcart\Domain\ValueObject\Identifier;
 
 class BasketSpec extends ObjectBehavior
 {
+	private $item;
+	private $itemId;
+
+	function let(Item $item) {
+		$this->item = $item;
+		$this->itemId = rand();
+		$this->item->getId()->willReturn($this->itemId);
+	}
 
     function it_is_initializable()
     {
@@ -21,35 +29,30 @@ class BasketSpec extends ObjectBehavior
     	$this->countItems()->shouldReturn(0);
     }
 
-    function it_should_have_1_item_when_a_new_item_is_added(Item $item) {
-    	$itemId = rand();
-		$item->getId()->willReturn($itemId);
-    	$this->addItem($item);
+    function it_should_have_1_item_when_a_new_item_is_added(Item $item)
+    {
+    	$this->addItem($this->item);
 		$this->countItems()->shouldReturn(1);
 	}
 
-	function it_should_retrieve_an_item(Item $item) {
-		$itemId = rand();
-		$item->getId()->willReturn($itemId);
-		$this->addItem($item);
-		$this->getItem($itemId)->shouldReturn($item);
+	function it_should_retrieve_an_item(Item $item) 
+	{
+		$this->addItem($this->item);
+		$this->getItem($this->itemId)->shouldReturn($this->item);
 	}
 
-	function it_should_remove_an_item(Item $item) {
-		$itemId = rand();
-		$item->getId()->willReturn($itemId);
-		$this->addItem($item);
+	function it_should_remove_an_item(Item $item) 
+	{	
+		$this->addItem($this->item);
 		$this->countItems()->shouldReturn(1);
-		$this->removeItem($itemId);
+		$this->removeItem($this->itemId);
 		$this->countItems()->shouldReturn(0);
 	}
 
 	function it_should_increment_the_item_quantity(Item $item)
 	{
-		$itemId = rand();
-		$item->getId()->willReturn($itemId);
-		$this->addItem($item);
-		$item->increaseQuantity()->shouldBeCalled();
-		$this->addItem($item);
+		$this->addItem($this->item);
+		$this->item->increaseQuantity()->shouldBeCalled();
+		$this->addItem($this->item);
 	}
 }
