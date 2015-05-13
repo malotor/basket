@@ -6,17 +6,19 @@ use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
 use malotor\shoppingcart\Domain\Entity\Item;
-use malotor\shoppingcart\Domain\ValueObject\Identifier;
+use malotor\shoppingcart\Domain\Service\ItemReconciler;
 
 class BasketSpec extends ObjectBehavior
 {
 	private $item;
 	private $itemId;
 
-	function let(Item $item) {
+	function let(Item $item, ItemReconciler $itemReconciler) {
 		$this->item = $item;
 		$this->itemId = rand();
 		$this->item->getId()->willReturn($this->itemId);
+
+		$this->beConstructedWith($itemReconciler);
 	}
 
     function it_is_initializable()
@@ -58,5 +60,13 @@ class BasketSpec extends ObjectBehavior
 
 	function it_new_basket_should_return_total_amount_0() {
 		$this->totalAmount()->shouldReturn(0);
+	}
+
+	function it_should_return_a_total_amount_eq_sum_of_items_amount(ItemReconciler $itemReconciler) {
+
+		
+		$itemReconciler->getAmount($this->item)->shouldBeCalled()->willReturn(10);
+		$this->addItem($this->item);
+		$this->totalAmount()->shouldReturn(10);
 	}
 }
