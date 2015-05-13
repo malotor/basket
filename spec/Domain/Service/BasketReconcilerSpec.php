@@ -12,10 +12,12 @@ use malotor\shoppingcart\Domain\Service\ItemReconciler;
 
 class BasketReconcilerSpec extends ObjectBehavior
 {
+
 	function let(ItemReconciler $itemReconciler)
 	{
 		$this->beConstructedWith($itemReconciler);
 	}
+
     function it_is_initializable()
     {
         $this->shouldHaveType('malotor\shoppingcart\Domain\Service\BasketReconciler');
@@ -25,7 +27,6 @@ class BasketReconcilerSpec extends ObjectBehavior
     	$basket->getItems()->willReturn(array());
 		$this->totalAmount($basket)->shouldReturn(0);
 	}
-
 	
 	function it_should_return_a_total_amount_eq_sum_of_items_amount(Basket $basket, Item $item, ItemReconciler $itemReconciler) {
 		$products = array($item);

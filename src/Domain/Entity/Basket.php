@@ -40,16 +40,8 @@ class Basket
     private function containsItem($itemId) {
         return in_array($itemId, array_keys($this->items));
     }
-   
-    public function totalAmount()
-    {
-        $result = 0;
-        foreach ($this->items as $item) {
-            $result += $this->itemReconciler->getAmount($item);
-        }
-        return $result;
-    }
-
+    
+    //TODO Implement
     public function getItems() {
 
     }

@@ -57,4 +57,5 @@ class BasketSpec extends ObjectBehavior
 		$this->item->increaseQuantity()->shouldBeCalled();
 		$this->addItem($this->item);
 	}
+
 }
