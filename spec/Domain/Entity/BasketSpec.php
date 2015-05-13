@@ -10,6 +10,7 @@ use malotor\shoppingcart\Domain\ValueObject\Identifier;
 
 class BasketSpec extends ObjectBehavior
 {
+
     function it_is_initializable()
     {
         $this->shouldHaveType('malotor\shoppingcart\Domain\Entity\Basket');
@@ -21,6 +22,8 @@ class BasketSpec extends ObjectBehavior
     }
 
     function it_should_have_1_item_when_a_new_item_is_added(Item $item) {
+    	$itemId = rand();
+		$item->getId()->willReturn($itemId);
     	$this->addItem($item);
 		$this->countItems()->shouldReturn(1);
 	}
@@ -39,5 +42,14 @@ class BasketSpec extends ObjectBehavior
 		$this->countItems()->shouldReturn(1);
 		$this->removeItem($itemId);
 		$this->countItems()->shouldReturn(0);
+	}
+
+	function it_should_increment_the_item_quantity(Item $item)
+	{
+		$itemId = rand();
+		$item->getId()->willReturn($itemId);
+		$this->addItem($item);
+		$item->increaseQuantity()->shouldBeCalled();
+		$this->addItem($item);
 	}
 }
