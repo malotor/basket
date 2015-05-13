@@ -55,4 +55,8 @@ class BasketSpec extends ObjectBehavior
 		$this->item->increaseQuantity()->shouldBeCalled();
 		$this->addItem($this->item);
 	}
+
+	function it_new_basket_should_return_total_amount_0() {
+		$this->totalAmount()->shouldReturn(0);
+	}
 }
