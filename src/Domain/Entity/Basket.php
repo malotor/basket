@@ -11,15 +11,16 @@ class Basket
         return count($this->items);
     }
 
-    public function addItem($item)
+    public function addItem(Item $item)
     {
         $itemId = $item->getId();
-        if (!in_array($itemId, array_keys($this->items))) {
-            $this->items[$itemId] = $item;
-        } else {
+        if ($this->containsItem($itemId)) {
             $itemInCart = $this->getItem($itemId);
             $itemInCart->increaseQuantity();
-        }
+        }   
+        else 
+            $this->items[$itemId] = $item;
+            
     
     }
 
@@ -33,5 +34,8 @@ class Basket
         unset($this->items[$itemId]);
     }
 
+    private function containsItem($itemId) {
+        return in_array($itemId, array_keys($this->items));
+    }
    
 }
