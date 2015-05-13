@@ -20,8 +20,6 @@ class Basket
         }   
         else 
             $this->items[$itemId] = $item;
-            
-    
     }
 
     public function getItem($itemId)
@@ -38,4 +36,9 @@ class Basket
         return in_array($itemId, array_keys($this->items));
     }
    
+
+    public function totalAmount()
+    {
+        return 0;
+    }
 }
