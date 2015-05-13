@@ -13,7 +13,14 @@ class Basket
 
     public function addItem($item)
     {
-        $this->items[$item->getId()] = $item;
+        $itemId = $item->getId();
+        if (!in_array($itemId, array_keys($this->items))) {
+            $this->items[$itemId] = $item;
+        } else {
+            $itemInCart = $this->getItem($itemId);
+            $itemInCart->increaseQuantity();
+        }
+    
     }
 
     public function getItem($itemId)
@@ -25,4 +32,6 @@ class Basket
     {
         unset($this->items[$itemId]);
     }
+
+   
 }
