@@ -17,9 +17,8 @@ class Basket
         if ($this->containsItem($itemId)) {
             $itemInCart = $this->getItem($itemId);
             $itemInCart->increaseQuantity();
-        }   
-        else 
-            $this->items[$itemId] = $item;
+        }
+        else  $this->items[$itemId] = $item;
     }
 
     public function getItem($itemId)
@@ -35,10 +34,13 @@ class Basket
     private function containsItem($itemId) {
         return in_array($itemId, array_keys($this->items));
     }
-   
 
     public function totalAmount()
     {
-        return 0;
+        $result = 0;
+        foreach($this->items as $item) {
+            $result += $item->getAmount();
+        }
+        return $result;
     }
 }

@@ -8,4 +8,6 @@ interface Item
     public function getId();
 
     public function increaseQuantity();
+
+    public function getAmount();
 }
