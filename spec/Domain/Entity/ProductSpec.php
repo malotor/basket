@@ -11,4 +11,9 @@ class ProductSpec extends ObjectBehavior
     {
         $this->shouldHaveType('malotor\shoppingcart\Domain\Entity\Product');
     }
+
+    function it_should_implement_item()
+    {
+        $this->shouldImplement('malotor\shoppingcart\Domain\Entity\Item');
+    }
 }
