@@ -5,6 +5,7 @@ namespace malotor\shoppingcart\Domain\Entity;
 class Product implements Item
 {
     private $id;
+    private $quantity;
 
     public function getId()
     {
@@ -13,7 +14,7 @@ class Product implements Item
 
     public function increaseQuantity()
     {
-
+        $this->quantity++;
     }
 
     public function getAmount()
@@ -24,10 +25,11 @@ class Product implements Item
     public function __construct($id)
     {
         $this->id = $id;
+        $this->quantity = 1;
     }
 
     public function getQuantity()
     {
-        return 1;
+        return $this->quantity;
     }
 }
