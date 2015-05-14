@@ -4,6 +4,9 @@ namespace malotor\shoppingcart\Domain\Entity;
 
 class Product implements Item
 {
+
+    const INITIAL_QUANTITY = 1;
+
     private $id;
     private $quantity;
 
@@ -25,7 +28,7 @@ class Product implements Item
     public function __construct($id)
     {
         $this->id = $id;
-        $this->quantity = 1;
+        $this->quantity = self::INITIAL_QUANTITY;
     }
 
     public function getQuantity()
