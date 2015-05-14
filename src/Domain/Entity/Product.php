@@ -22,12 +22,13 @@ class Product implements Item
 
     public function getAmount()
     {
-
+        return $this->price;
     }
 
-    public function __construct($id)
+    public function __construct($id, $price)
     {
         $this->id = $id;
+        $this->price = $price;
         $this->quantity = self::INITIAL_QUANTITY;
     }
 
