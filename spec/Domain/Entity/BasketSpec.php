@@ -35,14 +35,14 @@ class BasketSpec extends ObjectBehavior
 		$this->countItems()->shouldReturn(1);
 	}
 
-	function it_should_retrieve_an_item(Item $item) 
+	function it_should_retrieve_an_item(Item $item)
 	{
 		$this->addItem($this->item);
 		$this->getItem($this->itemId)->shouldReturn($this->item);
 	}
 
-	function it_should_remove_an_item(Item $item) 
-	{	
+	function it_should_remove_an_item(Item $item)
+	{
 		$this->addItem($this->item);
 		$this->countItems()->shouldReturn(1);
 		$this->removeItem($this->itemId);
@@ -58,5 +58,13 @@ class BasketSpec extends ObjectBehavior
 
 	function it_new_basket_should_return_total_amount_0() {
 		$this->totalAmount()->shouldReturn(0);
-	}
+    }
+
+    function it_total_amount_of_basket_should_be_equal_the_amount_of_the_items()
+    {
+        $this->item->getAmount()->willReturn(10);
+        $this->addItem($this->item);
+
+        $this->totalAmount()->shouldReturn(10);
+    }
 }
