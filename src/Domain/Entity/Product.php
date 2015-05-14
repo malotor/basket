@@ -25,4 +25,9 @@ class Product implements Item
     {
         $this->id = $id;
     }
+
+    public function getQuantity()
+    {
+        return 1;
+    }
 }
