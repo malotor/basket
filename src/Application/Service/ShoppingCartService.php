@@ -28,4 +28,13 @@ class ShoppingCartService
 
     }
 
+
+    public function removeProductFromBasket($productId, $basketId)
+    {
+        $basket = $this->basketRepository->get($basketId);
+
+        $basket->removeItem($productId);
+
+        $this->basketRepository->save($basket);
+    }
 }
