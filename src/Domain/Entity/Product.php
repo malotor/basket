@@ -10,6 +10,16 @@ class Product implements Item
     private $id;
     private $quantity;
 
+    public function __construct($id, $price)
+    {
+        if (!is_numeric($price))
+            throw new \InvalidArgumentException("Price must be numeric");
+
+        $this->id = $id;
+        $this->price = (double) $price;
+        $this->quantity = self::INITIAL_QUANTITY;
+    }
+
     public function getId()
     {
         return $this->id;
@@ -25,12 +35,6 @@ class Product implements Item
         return $this->price * $this->quantity;
     }
 
-    public function __construct($id, $price)
-    {
-        $this->id = $id;
-        $this->price = $price;
-        $this->quantity = self::INITIAL_QUANTITY;
-    }
 
     public function getQuantity()
     {
