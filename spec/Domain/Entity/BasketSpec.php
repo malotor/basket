@@ -16,7 +16,8 @@ class BasketSpec extends ObjectBehavior
 	function let(Item $item) {
 		$this->item = $item;
 		$this->itemId = rand();
-		$this->item->getId()->willReturn($this->itemId);
+	    $this->item->getAmount()->willReturn(10);
+    	$this->item->getId()->willReturn($this->itemId);
 	}
 
     function it_is_initializable()
@@ -29,7 +30,7 @@ class BasketSpec extends ObjectBehavior
     	$this->countItems()->shouldReturn(0);
     }
 
-    function it_should_have_1_item_when_a_new_item_is_added(Item $item)
+    function it_should_have_1_item_when_a_new_item_is_added()
     {
     	$this->addItem($this->item);
 		$this->countItems()->shouldReturn(1);
@@ -49,7 +50,7 @@ class BasketSpec extends ObjectBehavior
 		$this->countItems()->shouldReturn(0);
 	}
 
-	function it_should_increment_the_item_quantity(Item $item)
+	function it_should_increment_the_item_quantity()
 	{
 		$this->addItem($this->item);
 		$this->item->increaseQuantity()->shouldBeCalled();
@@ -62,9 +63,7 @@ class BasketSpec extends ObjectBehavior
 
     function it_total_amount_of_basket_should_be_equal_the_amount_of_the_items()
     {
-        $this->item->getAmount()->willReturn(10);
         $this->addItem($this->item);
-
         $this->totalAmount()->shouldReturn(10);
     }
 }
