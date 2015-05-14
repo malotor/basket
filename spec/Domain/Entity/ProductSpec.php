@@ -30,4 +30,9 @@ class ProductSpec extends ObjectBehavior
     {
         $this->getId()->shouldReturn($this->itemId);
     }
+
+    function it_should_has_an_initial_quantity_equal_than_1()
+    {
+        $this->getQuantity()->shouldReturn(1);
+    }
 }
