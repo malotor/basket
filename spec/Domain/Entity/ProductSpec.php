@@ -35,4 +35,11 @@ class ProductSpec extends ObjectBehavior
     {
         $this->getQuantity()->shouldReturn(1);
     }
+
+    function it_should_increment_its_quantity()
+    {
+        $this->increaseQuantity();
+        $this->getQuantity()->shouldReturn(2);
+
+    }
 }
