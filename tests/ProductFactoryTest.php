@@ -5,15 +5,19 @@ use malotor\shoppingcart\Domain\Entity\Product;
 
 class ProductFacotyTest extends PHPUnit_Framework_TestCase {
 
-    public function testShouldReturnAProductObject() {
-
+    public function setUp() {
         $obj = new stdClass;
         $obj->id = 1;
         $obj->price = 10.2;
 
-        $product = ProductFactory::create($obj);
-
-        $this->assertTrue($product instanceof Product);
+        $this->product = ProductFactory::create($obj);
+    }
+    public function testShouldReturnAProductObject() {
+        $this->assertTrue($this->product instanceof Product);
     }
 
+    public function testShouldReturnExceptedProduct() {
+        $this->assertEquals(1, $this->product->getId());
+        $this->assertEquals(10.2, $this->product->getAmount());
+    }
 }
