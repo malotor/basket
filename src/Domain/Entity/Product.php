@@ -22,7 +22,7 @@ class Product implements Item
 
     public function getAmount()
     {
-        return $this->price;
+        return $this->price * $this->quantity;
     }
 
     public function __construct($id, $price)
