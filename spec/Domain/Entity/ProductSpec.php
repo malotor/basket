@@ -9,11 +9,13 @@ class ProductSpec extends ObjectBehavior
 {
 
     private $itemId;
+    private $price;
 
     function let()
     {
-        $this->itemId = rand();
-        $this->beConstructedWith($this->itemId);
+        $this->price = rand(1,30);
+        $this->itemId = rand(1,10);
+        $this->beConstructedWith($this->itemId, $this->price);
     }
 
     function it_is_initializable()
@@ -40,6 +42,10 @@ class ProductSpec extends ObjectBehavior
     {
         $this->increaseQuantity();
         $this->getQuantity()->shouldReturn(2);
+    }
 
+    function it_should_return_total_amount_of_product()
+    {
+        $this->getAmount()->shouldReturn($this->price);
     }
 }
