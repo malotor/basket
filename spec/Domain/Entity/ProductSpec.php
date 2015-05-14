@@ -13,7 +13,7 @@ class ProductSpec extends ObjectBehavior
 
     function let()
     {
-        $this->price = rand(1,30);
+        $this->price = (double) rand(1,30);
         $this->itemId = rand(1,10);
         $this->beConstructedWith($this->itemId, $this->price);
     }
@@ -49,5 +49,10 @@ class ProductSpec extends ObjectBehavior
         $this->getAmount()->shouldReturn($this->price);
         $this->increaseQuantity();
         $this->getAmount()->shouldReturn($this->price * 2);
+    }
+
+    function it_should_have_a_numeric_price()
+    {
+        $this->shouldThrow('\InvalidArgumentException')->during('__construct', [ $this->itemId, "nonumeric"]);
     }
 }
