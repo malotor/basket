@@ -47,5 +47,7 @@ class ProductSpec extends ObjectBehavior
     function it_should_return_total_amount_of_product()
     {
         $this->getAmount()->shouldReturn($this->price);
+        $this->increaseQuantity();
+        $this->getAmount()->shouldReturn($this->price * 2);
     }
 }
