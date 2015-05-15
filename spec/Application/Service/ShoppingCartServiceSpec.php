@@ -63,4 +63,11 @@ class ShoppingCartServiceSpec extends ObjectBehavior
         $this->removeProductFromBasket($this->productId, $this->basketId);
     }
 
+    function it_should_retrieve_all_produts_in_a_basket()
+    {
+        $this->basket->addItem($this->product)->shouldBeCalled();
+
+        $this->getProductsFromBasket($this->basketId)->shouldReturn([$this->product]);
+    }
+
 }
