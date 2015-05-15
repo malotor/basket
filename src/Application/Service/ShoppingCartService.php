@@ -15,19 +15,15 @@ class ShoppingCartService
     {
         $this->productRepository = $productRepository;
         $this->basketRepository = $basketRepository;
-
     }
+
     public function addProductToBasket($productId, $baskedId)
     {
         $basket = $this->basketRepository->get($baskedId);
         $product = $this->productRepository->get($productId);
-
         $basket->addItem($product);
-
         $this->basketRepository->save($basket);
-
     }
-
 
     public function removeProductFromBasket($productId, $basketId)
     {
