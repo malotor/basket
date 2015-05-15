@@ -14,11 +14,10 @@ class Basket
     public function addItem(Item $item)
     {
         $itemId = $item->getId();
-        if ($this->containsItem($itemId)) {
-            $itemInCart = $this->getItem($itemId);
-            $itemInCart->increaseQuantity();
-        }
-        else  $this->items[$itemId] = $item;
+        if ($this->containsItem($itemId)) 
+            $this->items[$itemId]->increaseQuantity();
+        else
+            $this->items[$itemId] = $item;
     }
 
     public function getItem($itemId)
