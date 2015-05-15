@@ -39,6 +39,8 @@ class ShoppingCartServiceSpec extends ObjectBehavior
         $this->productId = rand();
         $this->basketId = rand();
 
+        $this->basket->getItems()->willReturn([$this->productId => $this->product]);
+
         $this->productRepo->get($this->productId)->willReturn($this->product);
         $this->basketRepo->get($this->basketId)->willReturn($this->basket);
 
@@ -65,9 +67,7 @@ class ShoppingCartServiceSpec extends ObjectBehavior
 
     function it_should_retrieve_all_produts_in_a_basket()
     {
-        $this->basket->addItem($this->product)->shouldBeCalled();
-
-        $this->getProductsFromBasket($this->basketId)->shouldReturn([$this->product]);
+        $this->getProductsFromBasket($this->basketId)->shouldReturn([$this->productId => $this->product]);
     }
 
 }
