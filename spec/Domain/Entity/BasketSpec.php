@@ -66,4 +66,10 @@ class BasketSpec extends ObjectBehavior
         $this->addItem($this->item);
         $this->totalAmount()->shouldReturn(10);
     }
+
+    function it_should_return_all_items_in_the_basket()
+    {
+    	$this->addItem($this->item);
+    	$this->getItems()->shouldReturn([$this->itemId => $this->item]);
+    }
 }
