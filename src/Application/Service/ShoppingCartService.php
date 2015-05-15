@@ -43,4 +43,10 @@ class ShoppingCartService
         $basket = $this->basketRepository->get($basketId);
         return $basket->getItems();
     }
+
+    public function getBasketTotalAmount($basketId)
+    {
+        $basket = $this->basketRepository->get($basketId);
+        return $basket->totalAmount();
+    }
 }
