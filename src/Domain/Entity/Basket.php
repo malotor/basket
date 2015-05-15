@@ -43,4 +43,10 @@ class Basket
         }
         return $result;
     }
+
+
+    public function getItems()
+    {
+        return $this->items;
+    }
 }

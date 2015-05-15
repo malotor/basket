@@ -37,4 +37,10 @@ class ShoppingCartService
 
         $this->basketRepository->save($basket);
     }
+
+    public function getProductsFromBasket($basketId)
+    {
+        $basket = $this->basketRepository->get($basketId);
+        return $basket->getItems();
+    }
 }
