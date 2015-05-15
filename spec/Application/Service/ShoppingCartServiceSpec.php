@@ -41,6 +41,8 @@ class ShoppingCartServiceSpec extends ObjectBehavior
 
         $this->basket->getItems()->willReturn([$this->productId => $this->product]);
 
+        $this->basket->totalAmount()->willReturn(10);
+
         $this->productRepo->get($this->productId)->willReturn($this->product);
         $this->basketRepo->get($this->basketId)->willReturn($this->basket);
 
@@ -70,4 +72,8 @@ class ShoppingCartServiceSpec extends ObjectBehavior
         $this->getProductsFromBasket($this->basketId)->shouldReturn([$this->productId => $this->product]);
     }
 
+    function it_should_retrieve_total_basket_amount()
+    {
+        $this->getBasketTotalAmount($this->basketId)->shouldReturn(10);
+    }
 }
