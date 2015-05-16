@@ -8,8 +8,8 @@ class BasketFactory
 {
     static public function create($products = array()) {
         $basket = new Basket();
-        foreach ($products as $product) {
-           $basket->addItem($product);
+        foreach ($products as $productsStdObject) {
+        	$basket->addItem( ProductFactory::create($productsStdObject) );
         }
         return $basket;
     }
