@@ -7,6 +7,6 @@ use malotor\shoppingcart\Domain\Entity\Product;
 class ProductFactory
 {
     static public function create($object) {
-        return new Product($object->id, $object->price);
+        return new Product($object->id, $object->price, $object->quantity);
     }
 }
