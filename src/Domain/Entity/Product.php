@@ -14,6 +14,8 @@ class Product implements Item
         if (!is_numeric($price))
             throw new \InvalidArgumentException("Price must be numeric");
 
+        if (is_null($quantity)) $quantity = 1;
+        
         $this->id = $id;
         $this->price = (double) $price;
         $this->quantity = $quantity;
