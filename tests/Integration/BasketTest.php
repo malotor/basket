@@ -22,16 +22,17 @@ class BasketTest extends PHPUnit_Framework_TestCase {
     }
     public function testRemoveAProduct() {
         $this->basket->addItem($this->products[0]);
-        $this->assertEquals(1, $this->basket->countItems());
         $this->basket->addItem($this->products[1]);
-        $this->assertEquals(2, $this->basket->countItems());
+        $this->basket->removeItem(1);
+        $this->assertEquals(1, $this->basket->countItems());
     }
 
     public function testIncreaseProductQuantity() {
+        $this->assertEquals(1, $this->products[0]->getQuantity());
+        $this->basket->addItem($this->products[0]);
         $this->basket->addItem($this->products[0]);
         $this->assertEquals(1, $this->basket->countItems());
-        $this->basket->addItem($this->products[0]);
-        $this->assertEquals(1, $this->basket->countItems());
+        $this->assertEquals(2, $this->products[0]->getQuantity());
     }
 
     public function testCartTotalAmount() {
