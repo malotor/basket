@@ -2,8 +2,12 @@
 
 namespace malotor\shoppingcart\Application\Repository;
 
+use malotor\shoppingcart\Domain\Entity\Product;
+
 interface ProductRepository
 {
-
-    public function get($argument1);
+	/**
+	* @return Product
+	*/
+    public function get($productId);
 }
